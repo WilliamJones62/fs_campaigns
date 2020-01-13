@@ -1,0 +1,2 @@
+module CustomerCampaignsHelper
+end

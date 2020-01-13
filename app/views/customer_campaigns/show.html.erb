@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Showing Customer Campaign</h3>
+
+<p>
+  <strong>Campaign:</strong>
+  <%= @campaign_title%>
+</p>
+
+<p>
+  <strong>Customer Name:</strong>
+  <%= @customer_campaign.custname %>
+</p>
+
+<h4>Activities</h4>
+
+<table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th><strong> Date </strong></th>
+      <th><strong> Activity </strong></th>
+      <th><strong> Outcome </strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customer_campaign.campaign_activities.each do |c| %>
+    <tr>
+      <td> <%= display_date(c.activity_date) %> </td>
+      <td> <%= c.activity %> </td>
+      <td> <%= c.outcome %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_customer_campaign_path(@customer_campaign), class: "btn btn-primary" %>
+<%= link_to 'Back', customer_campaigns_path, class: "btn btn-primary" %>

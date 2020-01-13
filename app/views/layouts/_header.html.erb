@@ -1,0 +1,23 @@
+<span class="primary-logo">
+</span>
+<span id="navbar">
+  <% if user_signed_in? %>
+    <% if current_user.campaign_role != 'Marketing' %>
+      <span><a href="/", class="btn btn-primary">Index</a></span>
+    <% end %>
+    <% if current_user.campaign_role != 'Food Service' %>
+      <span><%= link_to 'Campaigns', campaigns_path, class: "btn btn-primary" %></span>
+    <% end %>
+    <span><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %></span>
+  <% end %>
+</span>
+<h1 class="title">Campaigns
+</h1>
+<% if user_signed_in? %>
+  <span>Signed in as <%= current_user.email %></span>
+<% else %>
+  <span>No user currently signed in</span>
+<% end %>
+<%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+<%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+<br>

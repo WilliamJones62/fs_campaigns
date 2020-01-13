@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Campaigns</h1>
+
+<table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td><%= campaign.title %></td>
+        <td><%= campaign.description %></td>
+        <td><%= link_to 'Show', campaign, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_campaign_path(campaign), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Delete', campaign, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Campaign', new_campaign_path, class: "btn btn-primary" %>

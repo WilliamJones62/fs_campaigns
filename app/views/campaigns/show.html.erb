@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Showing Campaign</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Start date</th>
+      <th>End date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @campaign.title %></td>
+      <td><%= display_date(@campaign.start_date) %></td>
+      <td><%= display_date(@campaign.end_date) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <strong>Description:</strong>
+  <%= @campaign.description %>
+</p>
+
+<h4>Products</h4>
+
+<table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th><strong> Code </strong></th>
+      <th><strong> Description </strong></th>
+      <th><strong> UOM </strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @campaign.campaign_products.each do |c| %>
+    <tr>
+      <td> <%= c.part_code %> </td>
+      <td> <%= c.part_desc %> </td>
+      <td> <%= c.part_uom %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_campaign_path(@campaign), class: "btn btn-primary" %>
+<%= link_to 'Back', campaigns_path, class: "btn btn-primary" %>

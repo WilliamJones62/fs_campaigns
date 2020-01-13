@@ -1,0 +1,37 @@
+<h1>Customer Campaigns</h1>
+
+<%= form_with url: customer_campaigns_selected_path, local: true, method: 'get' do |f| %>
+  <%= f.label :title, "Campaign title:" %>
+  <%= f.text_field :title, :value => @title, :readonly => true %>
+  <table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>In Campaign?</th>
+        <th hidden>Customer</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% x = 0 %>
+      <% @customer_campaigns.each do |cc| %>
+        <% x += 1 %>
+        <% activei = "active"+x.to_s %>
+        <% custnamei = "custname"+x.to_s %>
+        <tr>
+          <td>&nbsp;&nbsp;<%= cc[:custname] %></td>
+          <% if cc.active_campaign %>
+            <td>&nbsp;&nbsp;<%= f.check_box activei, {checked: true} %> </td>
+          <% else %>
+            <td>&nbsp;&nbsp;<%= f.check_box activei %> </td>
+          <% end %>
+          <td hidden >&nbsp;&nbsp;<%= f.text_field custnamei, :value => cc[:custname], :readonly => true %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= f.submit "Select Customers" %>
+<% end %>
+<br>
+<%= link_to 'Back', customer_campaigns_path, class: "btn btn-primary" %>

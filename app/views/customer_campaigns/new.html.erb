@@ -1,0 +1,9 @@
+<h1>Select A Campaign</h1>
+<%= form_with url: customer_campaigns_list_path, local: true, method: 'get' do |f| %>
+  <%= f.label :campaign_title, "Campaign title:" %>
+  <%= f.select :campaign_title, @titles, {}, {:value => params[:campaign_title]} %>
+  <br>
+  <%= f.submit "Select Campaign" %>
+<% end %>
+<br>
+<%= link_to 'Back', customer_campaigns_path, class: "btn btn-primary" %>

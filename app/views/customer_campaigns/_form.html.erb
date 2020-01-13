@@ -1,0 +1,51 @@
+<%= form_with(model: customer_campaign, local: true) do |form| %>
+  <% if customer_campaign.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(customer_campaign.errors.count, "error") %> prohibited this customer_campaign from being saved:</h2>
+
+      <ul>
+      <% customer_campaign.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :campaign_title, "Campaign title:" %>
+    <%= @customer_campaign.campaign_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :custname, "Customer name:" %>
+    <%= @customer_campaign.custname %>
+  </div>
+
+  <h3>Activities</h3>
+  <% i = 1 %>
+  <%= form.fields_for :campaign_activities do |p| %>
+  <table>
+    <% if i == 1 %>
+      <thead>
+        <tr>
+          <th> <%= p.label :activity_date %> </th>
+          <th> <%= p.label :activity %> </th>
+          <th> <%= p.label :outcome %> </th>
+        </tr>
+      </thead>
+      <% i = 2 %>
+    <% end %>
+    <tbody>
+        <tr>
+          <td> <%= p.date_field :activity_date %> </td>
+          <td> <%= p.select :activity, @activities %> </td>
+          <td> <%= p.select :outcome, @outcomes %> </td>
+        </tr>
+    </tbody>
+  </table>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

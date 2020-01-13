@@ -1,0 +1,63 @@
+<%= form_with(model: campaign, local: true) do |form| %>
+  <% if campaign.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+
+      <ul>
+      <% campaign.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+      <thead>
+        <tr>
+          <th> <%= form.label :title, "Title" %> </th>
+          <th> <%= form.label :start_date %> </th>
+          <th> <%= form.label :end_date %> </th>
+        </tr>
+      </thead>
+    <tbody>
+        <tr>
+          <td> <%= form.text_field :title, id: :campaign_title %> </td>
+          <td> <%= form.date_field :start_date, id: :campaign_start_date %> </td>
+          <td> <%= form.date_field :end_date, id: :campaign_end_date %> </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div class="field">
+    <%= form.label :description, "Description:" %>
+    <%= form.text_area :description, id: :campaign_description %>
+  </div>
+
+  <h3>Products</h3>
+  <% i = 1 %>
+  <%= form.fields_for :campaign_products do |p| %>
+  <table>
+    <% if i == 1 %>
+      <thead>
+        <tr>
+          <th> <%= p.label :part_desc, "Description" %> </th>
+          <th> <%= p.label :part_uom, "UOM" %> </th>
+        </tr>
+      </thead>
+      <% i = 2 %>
+    <% end %>
+    <tbody>
+        <tr>
+          <td> <%= p.select :part_desc, $descs, {}, {:onchange=> ("partUoms(id)")} %></td>
+          <td> <%= p.text_field :part_uom, readonly: true %> </td>
+        </tr>
+    </tbody>
+  </table>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<p id= "alldescs" hidden> <%= $alldescs %> </p>
+<p id= "alluoms" hidden> <%= $alluoms %> </p>

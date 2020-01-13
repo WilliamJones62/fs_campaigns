@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  custcode: MyString
+  custname: MyString
+  campaign_id: 1
+
+two:
+  custcode: MyString
+  custname: MyString
+  campaign_id: 1

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Customer Campaigns</h1>
+
+<table id="normal_dt"  class="stripe" class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th>Campaign</th>
+      <th>Customer</th>
+      <th>Last activity</th>
+      <th>Activity count</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% i = 0 %>
+    <% @customer_campaigns.each do |customer_campaign| %>
+      <tr>
+        <% @campaigns.each do |c| %>
+          <% if customer_campaign.campaign_id == c.id %>
+            <td><%= c.title %></td>
+          <% end %>
+        <% end %>
+        <td><%= customer_campaign.custname %></td>
+        <td><%= @last_activity[i] %></td>
+        <td><%= customer_campaign.campaign_activities.count %></td>
+        <td><%= link_to 'Show', customer_campaign, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_customer_campaign_path(customer_campaign), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Delete', customer_campaign, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
+      </tr>
+      <% i += 1 %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Maintain Customer Campaigns', new_customer_campaign_path, class: "btn btn-primary" %>
