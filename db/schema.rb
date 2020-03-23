@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191219180124) do
+ActiveRecord::Schema.define(version: 20200317121007) do
 
   create_table "campaign_activities", force: :cascade do |t|
     t.integer "customer_campaign_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20191219180124) do
     t.boolean "active_campaign"
     t.boolean "three_orders"
     t.boolean "campaign_expired"
+    t.string "ship_to"
   end
 
   create_table "customer_shiptos", force: :cascade do |t|
@@ -75,6 +76,25 @@ ActiveRecord::Schema.define(version: 20191219180124) do
     t.string "part_desc"
     t.string "part_grp"
     t.string "uom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prospects", force: :cascade do |t|
+    t.string "customer_id"
+    t.string "name"
+    t.string "credit_terms"
+    t.string "rep"
+    t.boolean "status"
+    t.string "source"
+    t.string "zip"
+    t.date "active_date"
+    t.boolean "customer"
+    t.string "city"
+    t.string "state"
+    t.string "ship_to"
+    t.boolean "compass"
+    t.boolean "new_opening"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

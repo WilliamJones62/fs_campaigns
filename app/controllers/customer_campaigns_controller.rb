@@ -165,7 +165,7 @@ class CustomerCampaignsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_campaign_params
       params.require(:customer_campaign).permit(
-        :custcode, :custname, :campaign_id, :user_name, :campaign_title,
+        :custcode, :custname, :campaign_id, :user_name, :campaign_title, :ship_to,
         campaign_activities_attributes: [
           :id,
           :activity_date,

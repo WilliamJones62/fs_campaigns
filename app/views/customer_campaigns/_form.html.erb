@@ -37,7 +37,7 @@
     <% end %>
     <tbody>
         <tr>
-          <td> <%= p.date_field :activity_date %> </td>
+          <td> <%= p.date_field :activity_date, max: Date.today, min: @customer_campaign.created_at - 10 %> </td>
           <td> <%= p.select :activity, @activities %> </td>
           <td> <%= p.select :outcome, @outcomes %> </td>
         </tr>

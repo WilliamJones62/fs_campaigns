@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: MyString
+  name: MyString
+  credit_terms: MyString
+  rep: MyString
+  status: false
+  source: MyString
+  zip: MyString
+  active_date: 2020-03-17
+  customer: false
+  city: MyString
+  state: MyString
+  ship_to: MyString
+  compass: false
+  new_opening: false
+
+two:
+  customer_id: MyString
+  name: MyString
+  credit_terms: MyString
+  rep: MyString
+  status: false
+  source: MyString
+  zip: MyString
+  active_date: 2020-03-17
+  customer: false
+  city: MyString
+  state: MyString
+  ship_to: MyString
+  compass: false
+  new_opening: false

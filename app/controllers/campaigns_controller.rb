@@ -12,20 +12,20 @@ def show
   end
 
   # GET /campaigns/new
-  def new
-    @campaign = Campaign.new
-    10.times { @campaign.campaign_products.build }
-  end
+def new
+  @campaign = Campaign.new
+  10.times { @campaign.campaign_products.build }
+end
 
   # GET /campaigns/1/edit
-  def edit
-    if @campaign.campaign_products.count > 9
-      @campaign.campaign_products.build
-    else
-      i = 10 - @campaign.campaign_products.count
-      i.times { @campaign.campaign_products.build }
-    end
+def edit
+  if @campaign.campaign_products.count > 9
+    @campaign.campaign_products.build
+  else
+    i = 10 - @campaign.campaign_products.count
+    i.times { @campaign.campaign_products.build }
   end
+end
 
   # POST /campaigns
 def create
@@ -54,8 +54,10 @@ def update
         @campaign.campaign_products.each do |c|
           if !c.part_desc.blank?
             p = Partmstr.find_by part_desc: c.part_desc
-            c.part_code = p.part_code
-            c.save
+            if p
+              c.part_code = p.part_code
+              c.save
+            end
           end
         end
         format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
